@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматизация и AI | Широнина Юлия Борисовна</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .back-to-main {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #2980b9;
+            transform: translateX(-3px);
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+        
+        .email, .telegram {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .email:hover, .telegram:hover {
+            color: #3498db;
+        }
+        
+        .intro-note {
+            text-align: center;
+            font-size: 18px;
+            margin: 30px 0 40px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .tasks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .task-card {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .task-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .task-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .solution-section {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .solution-section h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .solution-section h3 i {
+            font-size: 20px;
+        }
+        
+        .result-section {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: #e8f6f3;
+            border-radius: 6px;
+            border-left: 3px solid #2ecc71;
+        }
+        
+        .result-section h3 {
+            color: #27ae60;
+            margin-bottom: 10px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .result-section h3 i {
+            font-size: 20px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: all 0.3s;
+        }
+        
+        .tech-item:hover {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+        
+        .tech-item i {
+            font-size: 18px;
+        }
+        
+        .python { color: #306998; }
+        .html { color: #e34c26; }
+        .css { color: #264de4; }
+        .git { color: #f1502f; }
+        .ai { color: #8e44ad; }
+        .regex { color: #d35400; }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            color: #7f8c8d;
+            font-size: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .back-to-main {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            .task-card {
+                padding: 25px 20px;
+            }
+            
+            .tech-stack {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .task-title {
+                font-size: 20px;
+            }
+            
+            .solution-section, .result-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Кнопка возврата на главную -->
+        <div class="back-to-main">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> На главную
+            </a>
+        </div>
+        
+        <header>
+            <h1>Широнина Юлия Борисовна</h1>
+            <p class="subtitle">Редактор, переводчик, контент-мейкер с IT-бэкграундом</p>
+            
+            <div class="contact">
+                <a href="mailto:yuliya-or@mail.ru" class="email">yuliya-or@mail.ru</a>
+                <a href="https://t.me/YuliyaShiro" class="telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>@YuliyaShiro
+                </a>
+            </div>
+        </header>
+        
+        <div class="intro-note">
+            Примеры автоматизации рабочих процессов и применения AI для повышения эффективности
+        </div>
+        
+        <div class="tasks-container">
+            <!-- Задача 1 -->
+            <div class="task-card">
+                <div class="task-number">1</div>
+                <h2 class="task-title">Сократить время на рутинную проверку работоспособности ссылок и выявления опечаток в них</h2>
+                
+                <div class="solution-section">
+                    <h3><i class="fas fa-code"></i> Решение</h3>
+                    <p>Скрипт на Python для автоматической проверки. При помощи регулярных выражений извлекаются ссылки и проверяются с помощью библиотеки requests. Нерабочие ссылки записываются в таблицу и проверяются вручную.</p>
+                </div>
+                
+                <div class="result-section">
+                    <h3><i class="fas fa-chart-line"></i> Результат</h3>
+                    <p>Из примерно 500–700 ссылок как нерабочие выявляются 15–20. Большинство из них содержат опечатку (ненужный пробел, пропущенная точка). Экономия времени до 3 часов на каждую книгу.</p>
+                </div>
+            </div>
+            
+            <!-- Задача 2 -->
+            <div class="task-card">
+                <div class="task-number">2</div>
+                <h2 class="task-title">Выявить опечатки в названиях нерусифицированного интерфейса</h2>
+                
+                <div class="solution-section">
+                    <h3><i class="fas fa-code"></i> Решение</h3>
+                    <p>Скрипт на Python с применением регулярных выражений, извлечение уникальных названий на латинице, подсчет числа их вхождений в текст и ручная проверка (единичное вхождение — возможная опечатка).</p>
+                </div>
+                
+                <div class="result-section">
+                    <h3><i class="fas fa-chart-line"></i> Результат</h3>
+                    <p>Экономия времени до 12 часов для отдельных книг соответствующей тематики и более высокое качество для остальных.</p>
+                </div>
+            </div>
+            
+            <!-- Задача 3 -->
+            <div class="task-card">
+                <div class="task-number">3</div>
+                <h2 class="task-title">Создать сайт для продвижения личного бренда</h2>
+                
+                <div class="solution-section">
+                    <h3><i class="fas fa-code"></i> Решение</h3>
+                    <p>Из имеющегося макета в Figma извлекаются стили и картинки. Затем пишется HTML для всех страниц и заливается в новый репозиторий GitHub. Для помощи используется ИИ (DeepSeek).</p>
+                </div>
+                
+                <div class="result-section">
+                    <h3><i class="fas fa-chart-line"></i> Результат</h3>
+                    <p>Личный бесплатный сайт за минимум времени, возможность не только поделиться своими успехами, но и оттачивать навыки (технические, SEO и др.).</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <div class="tech-item">
+                <i class="fab fa-python python"></i>
+                <span>Python</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fab fa-html5 html"></i>
+                <span>HTML</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fab fa-css3-alt css"></i>
+                <span>CSS</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fab fa-git-alt git"></i>
+                <span>Git</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fas fa-robot ai"></i>
+                <span>AI / NLP</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fas fa-code regex"></i>
+                <span>Regex</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fas fa-cogs"></i>
+                <span>Requests</span>
+            </div>
+            
+            <div class="tech-item">
+                <i class="fab fa-github"></i>
+                <span>GitHub Pages</span>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Напишите мне на почту или в Telegram. Мы обсудим ваш проект и найдём для него оптимальное решение.</p>
+            <p style="margin-top: 10px;">© 2024 Широнина Юлия Борисовна</p>
+        </footer>
+    </div>
+</body>
+</html>

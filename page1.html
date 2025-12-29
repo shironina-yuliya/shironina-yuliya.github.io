@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование и перевод | Широнина Юлия Борисовна</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        
+        .back-to-main {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #2980b9;
+            transform: translateX(-3px);
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+        
+        .email, .telegram {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .email:hover, .telegram:hover {
+            color: #3498db;
+        }
+        
+        .intro {
+            font-size: 18px;
+            line-height: 1.7;
+            margin: 30px 0 40px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .project {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .project-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+        
+        .book-image {
+            width: 150px;
+            height: auto;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        
+        .book-info {
+            flex: 1;
+        }
+        
+        .book-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .book-author {
+            font-size: 18px;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .project-details {
+            margin-top: 20px;
+        }
+        
+        .project-details h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #ddd;
+            font-size: 20px;
+        }
+        
+        .features-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            color: #3498db;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .feature-text {
+            margin-top: 15px;
+            line-height: 1.7;
+            padding: 15px;
+            background-color: white;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            color: #7f8c8d;
+            font-size: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .book-image {
+                width: 200px;
+                margin-bottom: 15px;
+            }
+            
+            h1 {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .contact {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .back-to-main {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project {
+                min-width: 100%;
+            }
+            
+            .book-image {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Кнопка возврата на главную -->
+        <div class="back-to-main">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> На главную
+            </a>
+        </div>
+        
+        <header>
+            <h1>Широнина Юлия Борисовна</h1>
+            <p class="subtitle">Редактор, переводчик, контент-мейкер с IT-бэкграундом</p>
+            
+            <div class="contact">
+                <a href="mailto:yuliya-or@mail.ru" class="email">yuliya-or@mail.ru</a>
+                <a href="https://t.me/YuliyaShiro" class="telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>@YuliyaShiro
+                </a>
+            </div>
+        </header>
+        
+        <div class="intro">
+            С 2024 года я сотрудничаю с издательством «Питер» в качестве литературного редактора деловой и компьютерной литературы, переведенной с английского языка.
+        </div>
+        
+        <div class="projects-container">
+            <!-- Первый проект -->
+            <div class="project">
+                <div class="project-header">
+                    <img src="images/staff-engineer.jpg" alt="The Staff Engineer's Path" class="book-image">
+                    <div class="book-info">
+                        <h2 class="book-title">The Staff Engineer's Path</h2>
+                        <p class="book-author">Tanya Reilly</p>
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <h3>Особенности проекта:</h3>
+                    <ul class="features-list">
+                        <li>Яркая образность языка, изобилие авторских аллегорий.</li>
+                        <li>Многочисленные ссылки на другие книги, часть из которых переведена на русский язык.</li>
+                    </ul>
+                    
+                    <div class="feature-text">
+                        <strong>Решение:</strong> максимально точно сохранить авторский стиль с использованием выразительных средств языка перевода. Обращение к переведенной процитированной книге для согласованности ссылок.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Второй проект -->
+            <div class="project">
+                <div class="project-header">
+                    <img src="images/excel-book.jpg" alt="Getting Great Results with Excel" class="book-image">
+                    <div class="book-info">
+                        <h2 class="book-title">Getting Great Results with Excel® Pivot Tables, PowerQuery, and PowerPoint</h2>
+                        <p class="book-author">Thomas Fragale</p>
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <h3>Особенности проекта:</h3>
+                    
+                    <div class="feature-text">
+                        Русифицированный интерфейс, поэтому необходимо было повторять за автором действия в русской версии Excel и делать (проверять) скриншоты, чтобы рисунки и объяснения в книге совпадали.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Напишите мне на почту или в Telegram. Мы обсудим ваш проект и найдём для него оптимальное решение.</p>
+            <p style="margin-top: 10px;">© 2024 Широнина Юлия Борисовна</p>
+        </footer>
+    </div>
+</body>
+</html>

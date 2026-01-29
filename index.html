@@ -709,25 +709,7 @@
 					// Преобразуем полный текст в HTML
 					const contentHTML = marked.parse(fullText);
 					
-					// И в HTML-шаблоне оставляем как было
-					postsHTML += `
-					    <article class="blog-post" data-post-id="${post.file}">
-					        <div class="post-preview" onclick="togglePost(this)">
-					            <h3 class="post-title">${post.title}</h3>
-					            <div class="post-meta">
-					                <span>${post.date}</span>
-					            </div>
-					            <div class="post-excerpt">${excerpt}</div>
-					            <div class="expand-icon">▼</div>
-					        </div>
-					        <div class="post-full">
-					            <div class="post-content">
-					                ${contentHTML}  <!-- Теперь здесь только текст ПОСЛЕ <!--more--> -->
-					            </div>
-					        </div>
-					    </article>
-					`;
-                    
+					
                     // Создаем HTML для поста с раскрывающейся структурой
                     postsHTML += `
                         <article class="blog-post" data-post-id="${post.file}">
@@ -869,3 +851,4 @@
 </body>
 
 </html>
+

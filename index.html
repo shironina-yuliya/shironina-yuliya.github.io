@@ -686,12 +686,47 @@
                     }
                     
                     const markdownText = await response.text();
-                    
-                    // Преобразуем Markdown в HTML
-                    const contentHTML = marked.parse(markdownText);
-                    
-                    // Создаем превью текста
-                    const excerpt = createExcerpt(markdownText);
+
+					// Разделяем текст по <!--more-->
+					const parts = markdownText.split('<!--more-->');
+					let excerptText, fullText;
+					
+					if (parts.length > 1) {
+					    // Если есть разделитель
+					    excerptText = parts[0];
+					    fullText = parts[1];
+					} else {
+					    // Если нет разделителя - берем первые 200 символов для превью
+					    excerptText = markdownText.substring(0, 200) + '...';
+					    fullText = markdownText;
+					}
+					// Создаем превью (без Markdown-разметки)
+					const excerpt = excerptText
+					    .replace(/[#*`\[\]]/g, '')
+					    .replace(/\n/g, ' ')
+					    .substring(0, 200);
+					
+					// Преобразуем полный текст в HTML
+					const contentHTML = marked.parse(fullText);
+					
+					// И в HTML-шаблоне оставляем как было
+					postsHTML += `
+					    <article class="blog-post" data-post-id="${post.file}">
+					        <div class="post-preview" onclick="togglePost(this)">
+					            <h3 class="post-title">${post.title}</h3>
+					            <div class="post-meta">
+					                <span>${post.date}</span>
+					            </div>
+					            <div class="post-excerpt">${excerpt}</div>
+					            <div class="expand-icon">▼</div>
+					        </div>
+					        <div class="post-full">
+					            <div class="post-content">
+					                ${contentHTML}  <!-- Теперь здесь только текст ПОСЛЕ <!--more--> -->
+					            </div>
+					        </div>
+					    </article>
+					`;
                     
                     // Создаем HTML для поста с раскрывающейся структурой
                     postsHTML += `
@@ -832,4 +867,5 @@
         `);
     </script>
 </body>
+
 </html>

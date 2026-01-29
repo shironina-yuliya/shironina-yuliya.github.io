@@ -18,6 +18,8 @@
     <title>Широнина Юлия Борисовна, креативный пишущий редактор на темы IT, филолог, литературовед, преподаватель | Главная</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем библиотеку для преобразования Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -181,6 +183,219 @@
             margin-left: 8px;
         }
         
+        /* СТИЛИ ДЛЯ БЛОГА С РАСКРЫВАЮЩИМИСЯ ЗАМЕТКАМИ */
+        #blog-section {
+            margin: 50px 0;
+            padding: 30px 0;
+            border-top: 2px solid #ecf0f1;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-header h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 0;
+            border: none;
+        }
+        
+        .blog-subtitle {
+            color: #7f8c8d;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        #blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .blog-post {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .blog-post.expanded {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .post-preview {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-right: 60px;
+        }
+        
+        .post-preview:hover {
+            background-color: #fafafa;
+        }
+        
+        .post-title {
+            color: #2c3e50;
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .post-excerpt {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            max-height: 4.8em; /* Примерно 3 строки */
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .post-excerpt::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(to right, transparent, white 50%);
+            padding-left: 20px;
+        }
+        
+        .expand-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3498db;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-post.expanded .expand-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .post-full {
+            display: none;
+            padding: 0 25px 25px 25px;
+            border-top: 1px solid #eee;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .blog-post.expanded .post-full {
+            display: block;
+        }
+        
+        .post-content {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .post-content h1 { font-size: 24px; }
+        .post-content h2 { font-size: 22px; }
+        .post-content h3 { font-size: 20px; }
+        
+        .post-content p {
+            margin-bottom: 20px;
+        }
+        
+        .post-content ul,
+        .post-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .post-content li {
+            margin-bottom: 8px;
+        }
+        
+        .post-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+        }
+        
+        .post-content pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .post-content a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        
+        .post-content a:hover {
+            border-bottom: 1px solid #3498db;
+        }
+        
+        .blog-controls {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .show-more-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .show-more-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
         .navigation-arrows {
             display: flex;
             justify-content: center;
@@ -225,6 +440,12 @@
             border-top: 1px solid #eee;
         }
         
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 20px;
@@ -252,6 +473,28 @@
             
             .competency-card {
                 min-width: 100%;
+            }
+            
+            .blog-header h2 {
+                font-size: 26px;
+            }
+            
+            .blog-subtitle {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            
+            .post-preview {
+                padding: 20px;
+                padding-right: 50px;
+            }
+            
+            .post-title {
+                font-size: 18px;
+            }
+            
+            .post-full {
+                padding: 0 20px 20px 20px;
             }
         }
     </style>
@@ -315,6 +558,27 @@
             </div>
         </section>
         
+        <!-- БЛОГ С РАСКРЫВАЮЩИМИСЯ ЗАМЕТКАМИ -->
+        <section id="blog-section">
+            <div class="blog-header">
+                <h2>По буковке роман</h2>
+                <p class="blog-subtitle">Профессиональное мастерство оттачивается годами в каждом новом проекте. Здесь я буду рассказывать, над чем я работаю и как это сказывается на моих навыках. Уважаемые заказчики и работодатели! Здесь не будет сканов дипломов! Только практика и опыт.</p>
+            </div>
+            
+            <div id="blog-posts">
+                <!-- Здесь появятся посты -->
+                <div class="blog-loading">
+                    <p>Загружаю заметки...</p>
+                </div>
+            </div>
+            
+            <div class="blog-controls">
+                <button id="show-more-btn" class="show-more-btn" style="display: none;">
+                    Показать больше заметок
+                </button>
+            </div>
+        </section>
+        
         <div class="navigation-arrows">
             <a href="page1.html" class="nav-arrow">
                 <i class="fas fa-book"></i>
@@ -334,21 +598,238 @@
         
         <footer>
             <p>Напишите мне на почту или в Telegram. Мы обсудим ваш проект и найдём для него оптимальное решение.</p>
-            <p style="margin-top: 10px;">© 2025 Широнина Юлия Борисовна</p>
+            <p style="margin-top: 10px;">© 2026 Широнина Юлия Борисовна</p>
         </footer>
     </div>
+    
+    <script>
+        // КОНФИГУРАЦИЯ
+        const POSTS_PER_PAGE = 5; // Сколько постов показывать сначала
+        const POSTS_FOLDER = 'posts/'; // Папка с заметками
+        
+        // 10 ДЕМО-ЗАМЕТОК (замените своими)
+        const postsList = [
+             { 
+                file: '2026-01-29-sozdanie_bloga_na_saytye.md', 
+                title: 'Создание блога на сайте',
+                date: '29 января 2026',  
+            },
+            { 
+                file: '2026-01-27-pervaya_statya.md', 
+                title: 'Сегодня вышла первая моя статья',
+                date: '27 января 2026',   
+            },
+			{ 
+                file: '2026-01-25-podarok_ot_pitera.md', 
+                title: 'У меня маленький праздник:',
+                date: '25 января 2026',
+                
+            }          
+        ];
+        
+        let visiblePosts = POSTS_PER_PAGE;
+        
+        // Функция для создания превью текста (первые 200 символов)
+        function createExcerpt(text, maxLength = 200) {
+            // Удаляем HTML-теги и Markdown-разметку
+            let plainText = text.replace(/[#*`\[\]]/g, '').replace(/\n/g, ' ');
+            
+            if (plainText.length <= maxLength) return plainText;
+            
+            // Обрезаем до последнего полного слова
+            let trimmed = plainText.substr(0, maxLength);
+            trimmed = trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(' ')));
+            
+            return trimmed + '...';
+        }
+        
+        // Загрузка и отображение постов
+        async function loadBlogPosts() {
+            const blogContainer = document.getElementById('blog-posts');
+            const showMoreBtn = document.getElementById('show-more-btn');
+            
+            // Сначала показываем сообщение о загрузке
+            blogContainer.innerHTML = '<div class="blog-loading"><p>Загружаю заметки...</p></div>';
+            
+            // Сортируем посты по дате (новые сверху)
+            const sortedPosts = [...postsList].sort((a, b) => {
+                return new Date(b.date.split(' ').reverse().join('-')) - new Date(a.date.split(' ').reverse().join('-'));
+            });
+            
+            // Показываем только часть постов
+            const postsToShow = sortedPosts.slice(0, visiblePosts);
+            
+            let postsHTML = '';
+            
+            // Если постов нет
+            if (postsToShow.length === 0) {
+                blogContainer.innerHTML = `
+                    <div class="blog-empty">
+                        <p>Пока нет заметок. Первая появится здесь скоро!</p>
+                        <p style="margin-top: 15px; font-size: 14px;">
+                            Чтобы добавить заметку, создайте файл .md в папке "${POSTS_FOLDER}"
+                        </p>
+                    </div>
+                `;
+                showMoreBtn.style.display = 'none';
+                return;
+            }
+            
+            // Загружаем каждый пост
+            for (const post of postsToShow) {
+                try {
+                    // Загружаем MD-файл
+                    const response = await fetch(POSTS_FOLDER + post.file);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Файл ${post.file} не найден`);
+                    }
+                    
+                    const markdownText = await response.text();
+                    
+                    // Преобразуем Markdown в HTML
+                    const contentHTML = marked.parse(markdownText);
+                    
+                    // Создаем превью текста
+                    const excerpt = createExcerpt(markdownText);
+                    
+                    // Создаем HTML для поста с раскрывающейся структурой
+                    postsHTML += `
+                        <article class="blog-post" data-post-id="${post.file}">
+                            <div class="post-preview" onclick="togglePost(this)">
+                                <h3 class="post-title">${post.title}</h3>
+                                <div class="post-meta">
+                                    <span>${post.date}</span>
+                                    
+                                </div>
+                                <div class="post-excerpt">${excerpt}</div>
+                                <div class="expand-icon">▼</div>
+                            </div>
+                            <div class="post-full">
+                                <div class="post-content">
+                                    ${contentHTML}
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                    
+                } catch (error) {
+                    console.error('Ошибка загрузки:', error);
+                    // Показываем пост даже если файл не найден
+                    postsHTML += `
+                        <article class="blog-post" data-post-id="${post.file}">
+                            <div class="post-preview" onclick="togglePost(this)">
+                                <h3 class="post-title">${post.title}</h3>
+                                <div class="post-meta">
+                                    <span>${post.date}</span>
+                                    
+                                </div>
+                                <div class="post-excerpt">Заметка скоро появится. Кликните, чтобы увидеть больше.</div>
+                                <div class="expand-icon">▼</div>
+                            </div>
+                            <div class="post-full">
+                                <div class="post-content">
+                                    <p>Эта заметка готовится к публикации. Загляните сюда позже!</p>
+                                    <p>Чтобы создать эту заметку, добавьте файл <code>${post.file}</code> в папку <code>${POSTS_FOLDER}</code>.</p>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            
+            // Обновляем контейнер
+            blogContainer.innerHTML = postsHTML;
+            
+            // Показываем/скрываем кнопку "Показать больше"
+            if (visiblePosts < sortedPosts.length) {
+                showMoreBtn.style.display = 'inline-block';
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
+        
+        // Функция раскрытия/сворачивания поста
+        function togglePost(previewElement) {
+            const post = previewElement.closest('.blog-post');
+            const isExpanded = post.classList.contains('expanded');
+            
+            // Закрываем все открытые посты (опционально - можно убрать, чтобы открывать несколько)
+            document.querySelectorAll('.blog-post.expanded').forEach(expandedPost => {
+                if (expandedPost !== post) {
+                    expandedPost.classList.remove('expanded');
+                }
+            });
+            
+            // Переключаем состояние текущего поста
+            post.classList.toggle('expanded');
+            
+            // Прокручиваем к посту, если он открывается (только на мобильных)
+            if (!isExpanded && window.innerWidth < 768) {
+                setTimeout(() => {
+                    post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+        
+        // Кнопка "Показать больше"
+        document.getElementById('show-more-btn')?.addEventListener('click', function() {
+            visiblePosts += 5; // Показываем ещё 5 постов
+            loadBlogPosts();
+            
+            // Плавная прокрутка к новым постам
+            setTimeout(() => {
+                const blogSection = document.getElementById('blog-section');
+                blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        });
+        
+        // Загружаем посты при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+        
+        // Инструкция для пользователя в консоли
+        console.log(`
+            ===== ИНСТРУКЦИЯ ДЛЯ БЛОГА =====
+            
+            КАК ДОБАВИТЬ ЗАМЕТКУ:
+            1. Создайте папку "${POSTS_FOLDER}" в корне сайта
+            2. В папке создайте файл .md с именем в формате:
+               ГГГГ-ММ-ДД-название.md (например: 2025-03-25-moya-zametka.md)
+            3. Напишите заметку в формате Markdown
+            4. Добавьте информацию о файле в массив postsList выше:
+               {
+                 file: '2025-03-25-moya-zametka.md',
+                 title: 'Моя заметка',
+                 date: '25 марта 2025',
+                 readTime: '5 мин'
+               }
+            5. Загрузите на GitHub
+            
+            КАК РАБОТАЕТ ИНТЕРФЕЙС:
+            - Заметки показываются превью (первые 200 символов)
+            - Клик по заголовку или превью раскрывает полный текст
+            - Повторный клик сворачивает заметку
+            - Кнопка "Показать больше" загружает дополнительные заметки
+            
+            ПРИМЕР ЗАМЕТКИ (Markdown):
+            # Заголовок внутри заметки
+            
+            Введение и основные мысли.
+            
+            ## Подзаголовок
+            
+            * Пункт списка 1
+            * Пункт списка 2
+            
+            \`\`\`python
+            # Пример кода
+            print("Привет, мир!")
+            \`\`\`
+            
+            > Цитата или важная мысль.
+            
+            [Ссылка на ресурс](https://example.com)
+        `);
+    </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

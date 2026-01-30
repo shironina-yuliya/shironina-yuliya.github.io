@@ -263,20 +263,13 @@
             color: #555;
             font-size: 16px;
             line-height: 1.6;
-            max-height: 4.8em; /* Примерно 3 строки */
+            display: -webkit-box;
+		    -webkit-line-clamp: 3; /* 3 строки на десктопе */
+		    -webkit-box-orient: vertical;
             overflow: hidden;
             position: relative;
         }
-        
-        .post-excerpt::after {
-            content: '...';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(to right, transparent, white 50%);
-            padding-left: 20px;
-        }
-        
+		
         .expand-icon {
             position: absolute;
             right: 25px;
@@ -445,58 +438,14 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+       
         @media (max-width: 768px) {
-            .container {
-                padding: 20px;
+            .post-excerpt {
+                -webkit-line-clamp: 4; /* 4 строки на мобильных */
             }
+		}
             
-            h1 {
-                font-size: 28px;
-            }
             
-            .subtitle {
-                font-size: 18px;
-            }
-            
-            .contact {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .navigation-arrows {
-                flex-direction: column;
-                gap: 30px;
-                align-items: center;
-            }
-            
-            .competency-card {
-                min-width: 100%;
-            }
-            
-            .blog-header h2 {
-                font-size: 26px;
-            }
-            
-            .blog-subtitle {
-                font-size: 16px;
-                padding: 0 15px;
-            }
-            
-            .post-preview {
-                padding: 20px;
-                padding-right: 50px;
-            }
-            
-            .post-title {
-                font-size: 18px;
-            }
-            
-            .post-full {
-                padding: 0 20px 20px 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -851,5 +800,6 @@
 </body>
 
 </html>
+
 
 

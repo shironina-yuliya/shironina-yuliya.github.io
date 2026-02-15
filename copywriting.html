@@ -522,27 +522,6 @@
         </div>
 
         
-        <!-- Раздел "Внешние ссылки" -->
-        <div class="external-resources-section" style="margin-top: 40px; padding: 20px; background-color: #eef9ff; border-radius: 8px; border-left: 4px solid #9b59b6;">
-            <h3 style="color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center;">
-                <i class="fas fa-external-link-alt" style="margin-right: 10px; color: #9b59b6;"></i> 
-                Мои публикации на других сайтах
-            </h3>
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <!-- Внешняя ссылка 1 -->
-                <div style="background: white; padding: 15px; border-radius: 6px;">
-                    <h4 style="margin-bottom: 5px;">Обучающий курс "Практическая стилистика русского языка для IT"</h4>
-                    <p style="font-size: 15px; color: #666; margin-bottom: 10px;">Избавьтесь от распространённых речевых ошибок и сделайте свой текст ясным и точным.</p>
-                    <a href="https://stepik.org/269808" class="article-link external-link" target="_blank" rel="noopener noreferrer" title="Откроется в новой вкладке на сайте Stepik.org"> <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <!-- Внешняя ссылка 2 -->
-                <div style="background: white; padding: 15px; border-radius: 6px;">
-                    <h4 style="margin-bottom: 5px;">Как ИИ меняет копирайтинг</h4>
-                    <p style="font-size: 15px; color: #666; margin-bottom: 10px;">Моя колонка на VC.ru о будущем профессии.</p>
-                    <a href="https://vc.ru/u/..." class="article-link external-link" target="_blank" rel="noopener noreferrer">Читать на VC.ru <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
         <!-- Раздел "Мои статьи" с фильтрацией -->
         <div class="articles-section" id="articles-section">
             <h2>Мои статьи</h2>
@@ -604,6 +583,46 @@
                 </div>
                 
             </div>
+        </div>
+
+        <!-- Раздел "Внешние ссылки" -->
+        <div class="external-resources-section" style="margin-top: 40px; padding: 20px; background-color: #eef9ff; border-radius: 8px; border-left: 4px solid #9b59b6;">
+            <h3 style="color: #2c3e50; margin-bottom: 15px; display: flex; align-items: center;">
+                <i class="fas fa-external-link-alt" style="margin-right: 10px; color: #9b59b6;"></i> 
+                Мои публикации на других сайтах
+            </h3>
+            <!-- Видимые ссылки (первые 3) -->
+            <div class="links-visible">
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://stepik.org/269808" target="_blank" style="text-decoration:none;">Курс на Stepik: Практическая стилистика русского языка для IT</a>
+                </div>
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://mobiusapp.ru/blog/samoe-vremya-dlya-mobilnogo-prilozheniya-5-priznakov-chto-vashemu-internet-magazinu-eto-nuzhno/" target="_blank" style="text-decoration:none;">Самое время для мобильного приложения: 5 признаков, что вашему интернет-магазину это нужно</a>
+                </div>
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://mobiusapp.ru/blog/bitva-za-uderzhanie-kak-ne-poteryat-polzovatelya-v-pervuyu-nedelyu/" target="_blank" style="text-decoration:none;">Битва за удержание: Как не потерять пользователя в первую неделю</a>
+                </div>
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://mobiusapp.ru/blog/analitika-v-mobilnom-prilozhenii-ekskursiya-po-metrikam/" target="_blank" style="text-decoration:none;">Аналитика в мобильном приложении: экскурсия по метрикам</a>
+                </div>
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://mobiusapp.ru/blog/za-predelami-magazina-effektivnye-strategii-prodvizheniya-mobilnogo-prilozheniya-bez-aso/" target="_blank" style="text-decoration:none;">За пределами магазина: Эффективные стратегии продвижения мобильного приложения без ASO</a>
+                </div>
+            </div>
+            
+            <!-- Скрытые ссылки (остальные) -->
+            <div class="links-hidden" style="display: none;">
+                <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
+                    <a href="https://mobiusapp.ru/blog/ux-mobilnogo-prilozheniya-7-oshibok-kotorye-deystvitelno-razdrazhayut/" target="_blank" style="text-decoration:none;">UX мобильного приложения: 7 ошибок, которые действительно раздражают</a>
+                </div>
+                
+            </div>
+            
+            <!-- Кнопка для пошагового показа -->
+            <button onclick="showMore(this)" 
+                    style="margin-top:15px; padding:10px 20px; background:#3498db; color:white; border:none; border-radius:4px; cursor:pointer;">
+                Показать еще ↓
+            </button>
         </div>
         
         <div class="services">
@@ -704,10 +723,27 @@
             filterArticles('all');
         });
     </script>
+    <script>
+    let start = 5;
+    
+    function showMore(btn) {
+        const items = document.querySelectorAll('.link-item');
+        const total = items.length;
+        const step = 5;
+        
+        for (let i = start; i < start + step && i < total; i++) {
+            if (items[i]) items[i].style.display = 'block';
+        }
+        
+        start = Math.min(start + step, total);
+        if (start >= total) btn.style.display = 'none';
+    }
+    </script>
 </body>
 </html>
 
     
+
 
 
 

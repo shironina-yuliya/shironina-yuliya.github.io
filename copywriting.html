@@ -661,7 +661,15 @@
     <script>
         // Состояние для пошагового показа
         let articleStart = 3;
-        
+
+                // Функция для внешних ссылок
+        function showExternal(btn) {
+            const hiddenBlock = document.querySelector('.links-hidden');
+            if (hiddenBlock) {
+                hiddenBlock.style.display = 'block';
+                btn.style.display = 'none';
+            }
+        }
         // Функция для фильтрации
         function filterArticles(category) {
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -739,6 +747,7 @@
 </html>
 
     
+
 
 
 

@@ -466,13 +466,16 @@
                 padding: 15px;
             }
         }
-        
-                /* Скрываем статьи после 3-й */
+                /* Скрыть статьи после 3-й */
         .article-item:nth-child(n+4) {
-            display: none;
+            display: none !important;
         }
-
-
+        
+        /* Когда статьи показаны через скрипт, этот класс их открывает */
+        .article-item.visible {
+            display: block !important;
+        }
+        
     </style>
 </head>
 <body>
@@ -748,17 +751,19 @@
         const total = items.length;
         
         for (let i = articleStart; i < articleStart + 3 && i < total; i++) {
-            items[i].style.display = 'block';
+            items[i].classList.add('visible');
         }
         
         articleStart = Math.min(articleStart + 3, total);
         if (articleStart >= total) btn.style.display = 'none';
     }
     </script>
+
 </body>
 </html>
 
     
+
 
 
 

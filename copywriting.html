@@ -471,39 +471,6 @@
                 padding: 15px;
             }
         }
-        .article-item {
-            background: white;
-            padding: 20px;
-            border-radius: 6px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            display: none;  /* все скрыты */
-        }
-        
-        .article-item:nth-child(-n+3) {
-            display: block;  /* первые 3 видны */
-        }
-        
-        .article-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .article-item h3 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .article-item p {
-            font-size: 16px;
-            line-height: 1.5;
-            color: #666;
-            margin-bottom: 15px;
-        }
     </style>
 </head>
 <body>
@@ -783,7 +750,6 @@
         if (start >= total) btn.style.display = 'none';
     }
     </script>
-    
     <script>
     let start = 3;
     
@@ -804,8 +770,6 @@
 </html>
 
     
-
-
 
 
 

@@ -466,14 +466,8 @@
                 padding: 15px;
             }
         }
-                /* Скрыть статьи после 3-й */
-        .article-item:nth-child(n+4) {
-            display: none !important;
-        }
-        
-        /* Когда статьи показаны через скрипт, этот класс их открывает */
-        .article-item.visible {
-            display: block !important;
+        .article-item.hidden-article {
+            display: none;
         }
         
     </style>
@@ -594,10 +588,11 @@
                                    
             </div>
             <div style="text-align: center; margin-top: 20px;">
-                <button onclick="showMoreArticles(this)" 
+                <button onclick="showMoreArticles(this)" class="show-more-btn"
                         style="padding:10px 20px; background:#3498db; color:white; border:none; border-radius:4px; cursor:pointer;">
                     Показать еще 3 статьи ↓
             </button>
+
         </div>
         <!-- Раздел "Внешние ссылки" -->
         <div class="external-resources-section" style="margin-top: 40px; padding: 20px; background-color: #eef9ff; border-radius: 8px; border-left: 4px solid #9b59b6;">
@@ -664,105 +659,87 @@
     </div>
     
     <script>
-        // Функция для фильтрации статей по категориям
-        document.addEventListener('DOMContentLoaded', function() {
+        // Состояние для пошагового показа
+        let articleStart = 3;
+        
+        // Функция для фильтрации
+        function filterArticles(category) {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const articleItems = document.querySelectorAll('.article-item');
-            const topicCards = document.querySelectorAll('.topic-card');
             
-            // Функция фильтрации статей
-            function filterArticles(category) {
-                // Обновляем активную кнопку фильтра
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.getAttribute('data-filter') === category) {
-                        btn.classList.add('active');
-                    }
-                });
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Сбрасываем счетчик показа
+            articleStart = 3;
+            
+            // Показываем кнопку "Показать еще"
+            const moreBtn = document.querySelector('.articles-section .show-more-btn');
+            if (moreBtn) moreBtn.style.display = 'inline-block';
+            
+            // Фильтруем
+            articleItems.forEach((item, index) => {
+                const itemCategory = item.getAttribute('data-category');
                 
-                // Фильтруем статьи
-                let visibleCount = 0;
-                articleItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
-                    
-                    if (category === 'all' || itemCategory === category) {
+                if (category === 'all' || itemCategory === category) {
+                    if (index < 3) {
                         item.style.display = 'block';
-                        // Анимация появления с задержкой
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'translateY(0)';
-                        }, visibleCount * 100);
-                        visibleCount++;
+                        item.classList.remove('hidden-article');
                     } else {
                         item.style.display = 'none';
+                        item.classList.add('hidden-article');
                     }
-                });
-                
-                // Плавная прокрутка к разделу статей
-                setTimeout(() => {
-                    document.getElementById('articles-section').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 300);
-            }
-            
-            // Обработка кликов по кнопкам фильтра
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-filter');
-                    filterArticles(category);
-                });
-            });
-            
-            // Обработка кликов по карточкам тематик
-            topicCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    filterArticles(category);
-                });
-            });
-            
-            // Обработка параметров URL (если есть hash)
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1);
-                if (hash === 'it' || hash === 'literature' || hash === 'learning') {
-                    filterArticles(hash);
+                } else {
+                    item.style.display = 'none';
                 }
-            }
-            
-            // Инициализация - показываем все статьи
-            filterArticles('all');
-        });
-    </script>
-    <script>
-    // Для внешних ссылок
-    function showExternal(btn) {
-        const hiddenBlock = document.querySelector('.links-hidden');
-        hiddenBlock.style.display = 'block';
-        btn.style.display = 'none';
-    }
-    
-    // Для статей
-    let articleStart = 3;
-    
-    function showMoreArticles(btn) {
-        const items = document.querySelectorAll('.article-item');
-        const total = items.length;
-        
-        for (let i = articleStart; i < articleStart + 3 && i < total; i++) {
-            items[i].classList.add('visible');
+            });
         }
         
-        articleStart = Math.min(articleStart + 3, total);
-        if (articleStart >= total) btn.style.display = 'none';
-    }
-    </script>
+        // Функция для показа еще
+        function showMoreArticles(btn) {
+            const items = document.querySelectorAll('.article-item.hidden-article');
+            const step = 3;
+            
+            for (let i = 0; i < step && i < items.length; i++) {
+                items[i].style.display = 'block';
+                items[i].classList.remove('hidden-article');
+            }
+            
+            if (document.querySelectorAll('.article-item.hidden-article').length === 0) {
+                btn.style.display = 'none';
+            }
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            // Навешиваем обработчики на кнопки фильтра
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterArticles(this.getAttribute('data-filter'));
+                });
+            });
+            
+            // Навешиваем обработчики на карточки тематик
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    filterArticles(this.getAttribute('data-category'));
+                });
+            });
+            
+            // Показываем все статьи при загрузке
+            filterArticles('all');
+        });
+        </script>
 
 </body>
 </html>
 
     
+
 
 
 

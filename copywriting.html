@@ -466,6 +466,11 @@
                 padding: 15px;
             }
         }
+        
+                /* Скрываем статьи после 3-й */
+        .article-item:nth-child(n+4) {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -624,10 +629,9 @@
                 
             </div>
             
-            <!-- Кнопка для пошагового показа -->
-            <button onclick="showMore(this)" 
+            <button onclick="showExternal(this)" 
                     style="margin-top:15px; padding:10px 20px; background:#3498db; color:white; border:none; border-radius:4px; cursor:pointer;">
-                Показать еще ↓
+                Показать все ссылки ↓
             </button>
         </div>
         <div class="services">
@@ -729,41 +733,33 @@
         });
     </script>
     <script>
-    let start = 5;
-    
-    function showMore(btn) {
-        const items = document.querySelectorAll('.link-item');
-        const total = items.length;
-        const step = 5;
-        
-        for (let i = start; i < start + step && i < total; i++) {
-            if (items[i]) items[i].style.display = 'block';
-        }
-        
-        start = Math.min(start + step, total);
-        if (start >= total) btn.style.display = 'none';
+    // Для внешних ссылок
+    function showExternal(btn) {
+        const hiddenBlock = document.querySelector('.links-hidden');
+        hiddenBlock.style.display = 'block';
+        btn.style.display = 'none';
     }
-    </script>
-    <script>
-    let start = 3;
+    
+    // Для статей
+    let articleStart = 3;
     
     function showMoreArticles(btn) {
         const items = document.querySelectorAll('.article-item');
         const total = items.length;
-        const step = 3;
         
-        for (let i = start; i < start + step && i < total; i++) {
+        for (let i = articleStart; i < articleStart + 3 && i < total; i++) {
             items[i].style.display = 'block';
         }
         
-        start = Math.min(start + step, total);
-        if (start >= total) btn.style.display = 'none';
+        articleStart = Math.min(articleStart + 3, total);
+        if (articleStart >= total) btn.style.display = 'none';
     }
     </script>
 </body>
 </html>
 
     
+
 
 
 

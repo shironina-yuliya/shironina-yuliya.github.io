@@ -469,7 +469,48 @@
         .article-item.hidden-article {
             display: none;
         }
-        
+        /* Стили для ссылок с тегами */
+    .link-item {
+        padding: 10px;
+        background: white;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .platform-tag {
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+        color: white;
+        min-width: 60px;
+        text-align: center;
+    }
+    
+    .platform-tag.stepik {
+        background: #28a745; /* зеленый */
+    }
+    
+    .platform-tag.mobius {
+        background: #9b59b6; /* фиолетовый */
+    }
+    
+    .platform-tag.nextype {
+        background: #e67e22; /* оранжевый */
+    }
+    
+    .link-item a {
+        text-decoration: none;
+        color: #0066cc;
+        flex: 1;
+    }
+    
+    .link-item a:hover {
+        text-decoration: underline;
+    }
     </style>
 </head>
 <body>
@@ -603,8 +644,12 @@
                 <i class="fas fa-external-link-alt" style="margin-right: 10px; color: #9b59b6;"></i> 
                 Мои публикации на других сайтах
             </h3>
-            <!-- Видимые ссылки (первые 3) -->
+            <!-- Видимые ссылки (первые 5) -->
             <div class="links-visible">
+                <div class="link-item">
+                <span class="platform-tag stepik">Stepik</span>
+                <a href="https://stepik.org/269808" target="_blank">Курс на Stepik: Практическая стилистика русского языка для IT</a>
+            </div>
                 <div style="padding:10px; background:white; margin-bottom:8px; border-radius:4px;">
                     <a href="https://stepik.org/269808" target="_blank" style="text-decoration:none;">Курс на Stepik: Практическая стилистика русского языка для IT</a>
                 </div>
@@ -750,6 +795,7 @@
 </html>
 
     
+
 
 
 

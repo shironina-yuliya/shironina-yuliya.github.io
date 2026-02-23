@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FZ6005SGXR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MK5NZ9P5PK');
+</script>
+    <meta name="yandex-verification" content="96838db07a7b7862" />
+    <meta name="keywords" content="Креативный редактор, переводчик, контент-мейкер, копирайтер, IT, Python, ИИ, AI">
+	<meta name="description" content="Широнина Юлия Борисовна, пишущий редактор технической литературы, филолог, литературовед">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Широнина Юлия Борисовна, креативный пишущий редактор на темы IT, филолог, литературовед, преподаватель | Главная</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Подключаем библиотеку для преобразования Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 36px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        
+        .email, .telegram {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .email:hover, .telegram:hover {
+            color: #3498db;
+        }
+        
+        .telegram i {
+            margin-right: 8px;
+        }
+        
+        .mission {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #3498db;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+        
+        section {
+            margin: 30px 0;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 24px;
+        }
+        
+        .education-list {
+            list-style-type: none;
+        }
+        
+        .education-list li {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .education-list li:before {
+            content: "•";
+            color: #3498db;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .year {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .competencies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .competency-card {
+            flex: 1;
+            min-width: 280px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-top: 4px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .competency-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .competency-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .competency-card p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .arrow-link {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .arrow-link:hover {
+            color: #2980b9;
+            transform: translateX(5px);
+        }
+        
+        .arrow-link i {
+            margin-left: 8px;
+        }
+        
+        /* СТИЛИ ДЛЯ БЛОГА С РАСКРЫВАЮЩИМИСЯ ЗАМЕТКАМИ */
+        #blog-section {
+            margin: 50px 0;
+            padding: 30px 0;
+            border-top: 2px solid #ecf0f1;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .blog-header h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 0;
+            border: none;
+        }
+        
+        .blog-subtitle {
+            color: #7f8c8d;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        #blog-posts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .blog-post {
+            background: white;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .blog-post.expanded {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .post-preview {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-right: 60px;
+        }
+        
+        .post-preview:hover {
+            background-color: #fafafa;
+        }
+        
+        .post-title {
+            color: #2c3e50;
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .post-excerpt {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow: visible;
+        }
+
+        .expand-icon {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3498db;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-post.expanded .expand-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .post-full {
+            display: none;
+            padding: 0 25px 25px 25px;
+            border-top: 1px solid #eee;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .blog-post.expanded .post-full {
+            display: block;
+        }
+        
+        .post-content {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .post-content h1 { font-size: 24px; }
+        .post-content h2 { font-size: 22px; }
+        .post-content h3 { font-size: 20px; }
+        
+        .post-content p {
+            margin-bottom: 20px;
+        }
+        
+        .post-content ul,
+        .post-content ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .post-content li {
+            margin-bottom: 8px;
+        }
+        
+        .post-content code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+        }
+        
+        .post-content pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 18px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .post-content blockquote {
+            border-left: 4px solid #3498db;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .post-content a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+        
+        .post-content a:hover {
+            border-bottom: 1px solid #3498db;
+        }
+        
+        .blog-controls {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .show-more-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .show-more-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        .navigation-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #2c3e50;
+            transition: all 0.3s;
+            width: 120px;
+        }
+        
+        .nav-arrow:hover {
+            color: #3498db;
+            transform: translateY(-5px);
+        }
+        
+        .nav-arrow i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .nav-arrow span {
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            color: #7f8c8d;
+            font-size: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+		@media (min-width: 769px) {
+    		.post-excerpt {
+		        max-height: 4.8em;
+		        overflow: hidden;
+		        position: relative;
+    }
+    
+    		.post-excerpt::after {
+		        content: '...';
+		        position: absolute;
+		        bottom: 0;
+		        right: 0;
+		        background: linear-gradient(to right, transparent, white 50%);
+		        padding-left: 20px;
+    }
+}
+         
+            
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Широнина Юлия Борисовна</h1>
+            <p class="subtitle">Редактор, переводчик, контент-мейкер с IT-бэкграундом</p>
+            
+            <div class="contact">
+                <a href="mailto:shironina-yuliya@mail.ru" class="email">shironina-yuliya@mail.ru</a>
+                <a href="https://t.me/ShironinaYuliya" class="telegram" target="_blank">
+                    <i class="fab fa-telegram"></i>@ShironinaYuliya
+                </a>
+            </div>
+        </header>
+        
+        <div class="mission">
+            Моя миссия – наводить мосты между разными мирами: я делаю понятными современному человеку юмор XVIII века, русскоязычному читателю – книги, написанные на английском, гуманитарию – ход рассуждений LLM, а технарю – игру слов, неожиданно возникающую в новом контексте. И всё это вместе с прагматичной автоматизацией рутинных процессов и измерениями, не оставляющими ни малейшего сомнения в правильности сделанного выбора.
+        </div>
+        
+        <section>
+            <h2>Образование:</h2>
+            <ul class="education-list">
+                <li>
+                    <span class="year">1996–2001</span> Оренбургский государственный педагогический университет (ОГПУ), филфак
+                </li>
+                <li>
+                    <span class="year">2000–2001</span> ОГПУ, переподготовка по специальности переводчик (английский язык)
+                </li>
+                <li>
+                    <span class="year">2005</span> Защита диссертации на степень кандидата филологических наук, специальность 10.01.01 «Русская классическая литература», тема «Эволюция смехового мира в русской стихотворной комедии и "Горе от ума" А. С. Грибоедова»
+                </li>
+                <li>
+                    <span class="year">2023–2024</span> Оренбургский государственный университет, цифровая кафедра, программа переподготовки «Искусственный интеллект в лингвистике». Итоговый проект: дообучение и измерение S2S-моделей для перевода с английского, взятых с open-source-платформы Hugging Face
+                </li>
+            </ul>
+        </section>
+        
+        <section>
+            <h2>Ключевые компетенции и проектный опыт:</h2>
+            <div class="competencies">
+                <div class="competency-card">
+                    <h3>1. Редактирование и перевод</h3>
+                    <p>Редактирую тексты, переведённые с английского на русский и генерированные ИИ; перевожу с английского; исправляю фактологические, логические и стилистические ошибки; самостоятельно определю этапы и сроки выполнения проектов, чётко соблюдаю дедлайны; использую технический инструментарий при необходимости</p>
+                    <a href="redaktirovaniye_i_perevod.html" class="arrow-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="competency-card">
+                    <h3>2. Создание текстового контента</h3>
+                    <p>Пишу уникальные тексты с учетом SEO, ТоV бренда и по контент-плану, который сама же и составляю.</p>
+                    <a href="copywriting.html" class="arrow-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+                
+                <div class="competency-card">
+                    <h3>3. Автоматизация работы</h3>
+                    <p>Автоматизирую рутинную работу при помощи кода на Python (NLP, AI). Работаю не только с печатными издательствами и соцсетями, но и с сайтами (Figma, CSS, HTML)</p>
+                    <a href="IT_dla_linguist.html" class="arrow-link">Подробнее <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- БЛОГ С РАСКРЫВАЮЩИМИСЯ ЗАМЕТКАМИ -->
+        <section id="blog-section">
+            <div class="blog-header">
+                <h2>По буковке роман</h2>
+                <p class="blog-subtitle">Профессиональное мастерство оттачивается годами в каждом новом проекте. Здесь я буду рассказывать, над чем я работаю и как это сказывается на моих навыках. Уважаемые заказчики и работодатели! Здесь не будет сканов дипломов! Только практика и опыт.</p>
+            </div>
+            
+            <div id="blog-posts">
+                <!-- Здесь появятся посты -->
+                <div class="blog-loading">
+                    <p>Загружаю заметки...</p>
+                </div>
+            </div>
+            
+            <div class="blog-controls">
+                <button id="show-more-btn" class="show-more-btn" style="display: none;">
+                    Показать больше заметок
+                </button>
+            </div>
+        </section>
+        
+        <div class="navigation-arrows">
+            <a href="redaktirovaniye_i_perevod.html" class="nav-arrow">
+                <i class="fas fa-book"></i>
+                <span>Редактирование<br>и перевод</span>
+				
+            </a>
+            
+            <a href="copywriting.html" class="nav-arrow">
+                <i class="fas fa-pen-nib"></i>
+                <span>Создание<br>контента</span>
+            </a>
+            
+            <a href="IT_dla_linguist.html" class="nav-arrow">
+                <i class="fas fa-robot"></i>
+                <span>Автоматизация<br>и AI</span>
+            </a>
+        </div>
+        
+        <footer>
+            <p>Напишите мне на почту или в Telegram. Мы обсудим ваш проект и найдём для него оптимальное решение.</p>
+            <p style="margin-top: 10px;">© 2026 Широнина Юлия Борисовна</p>
+        </footer>
+    </div>
+    
+    <script>
+        // КОНФИГУРАЦИЯ
+        const POSTS_PER_PAGE = 5; // Сколько постов показывать сначала
+        const POSTS_FOLDER = '_posts/'; // Папка с заметками
+        
+        // 10 ДЕМО-ЗАМЕТОК (замените своими)
+        const postsList = [
+			{ 
+                file: '2026-02-21-local_NN_qwen.md', 
+                title: 'Сижу без интернета, и за окном буран',
+                date: '21 февраля 2026',  
+            },
+			{ 
+                file: '2026-02-20-Ubuntu_and_VB.md', 
+                title: 'На УБУНТенах и в восхитительной «машине»!',
+                date: '20 февраля 2026',  
+            },
+			{ 
+                file: '2026-02-15-Improved_my_site.md', 
+                title: 'Улучшила страницу с текстовым контентом',
+                date: '15 февраля 2026',  
+            }, 
+			{ 
+                file: '2026-02-12-AI_makes_stupid.md', 
+                title: 'ИИ отупляет: правда или миф?',
+                date: '12 февраля 2026',  
+            }, 
+            { 
+                file: '2026-02-07-test_AI_detector.md', 
+                title: 'Что внутри ИИ-детектора?',
+                date: '07 февраля 2026',  
+            }, 
+			{ 
+                file: '2026-01-30-adaptive_design_mobile.md', 
+                title: 'Адаптивный дизайн на мобильных',
+                date: '30 января 2026',  
+            }, 
+			{ 
+                file: '2026-01-29-sozdanie_bloga_na_saytye.md', 
+                title: 'Создание блога на сайте',
+                date: '29 января 2026',  
+            },
+            { 
+                file: '2026-01-27-pervaya_statya.md', 
+                title: 'Сегодня вышла первая моя статья',
+                date: '27 января 2026',   
+            },
+			{ 
+                file: '2026-01-25-podarok_ot_pitera.md', 
+                title: 'У меня маленький праздник:',
+                date: '25 января 2026',
+                
+            }          
+        ];
+        
+        let visiblePosts = POSTS_PER_PAGE;
+        
+        // Функция для создания превью текста (первые 200 символов)
+        function createExcerpt(text, maxLength = 200) {
+            // Удаляем HTML-теги и Markdown-разметку
+            let plainText = text.replace(/[#*`\[\]]/g, '').replace(/\n/g, ' ');
+            
+            if (plainText.length <= maxLength) return plainText;
+            
+            // Обрезаем до последнего полного слова
+            let trimmed = plainText.substr(0, maxLength);
+            trimmed = trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(' ')));
+            
+            return trimmed + '...';
+        }
+        
+        // Загрузка и отображение постов
+        async function loadBlogPosts() {
+            const blogContainer = document.getElementById('blog-posts');
+            const showMoreBtn = document.getElementById('show-more-btn');
+            
+            // Сначала показываем сообщение о загрузке
+            blogContainer.innerHTML = '<div class="blog-loading"><p>Загружаю заметки...</p></div>';
+            
+            // Сортируем посты по дате (новые сверху)
+            const sortedPosts = [...postsList].sort((a, b) => {
+                return new Date(b.date.split(' ').reverse().join('-')) - new Date(a.date.split(' ').reverse().join('-'));
+            });
+            
+            // Показываем только часть постов
+            const postsToShow = sortedPosts.slice(0, visiblePosts);
+            
+            let postsHTML = '';
+            
+            // Если постов нет
+            if (postsToShow.length === 0) {
+                blogContainer.innerHTML = `
+                    <div class="blog-empty">
+                        <p>Пока нет заметок. Первая появится здесь скоро!</p>
+                        <p style="margin-top: 15px; font-size: 14px;">
+                            Чтобы добавить заметку, создайте файл .md в папке "${POSTS_FOLDER}"
+                        </p>
+                    </div>
+                `;
+                showMoreBtn.style.display = 'none';
+                return;
+            }
+            
+            // Загружаем каждый пост
+            for (const post of postsToShow) {
+                try {
+                    // Загружаем MD-файл
+                    const response = await fetch(POSTS_FOLDER + post.file);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Файл ${post.file} не найден`);
+                    }
+                    
+                    const markdownText = await response.text();
+
+					// Разделяем текст по <!--more-->
+					const parts = markdownText.split('<!--more-->');
+					let excerptText, fullText;
+					
+					if (parts.length > 1) {
+					    // Если есть разделитель
+					    excerptText = parts[0];
+					    fullText = parts[1];
+					} else {
+					    // Если нет разделителя - берем первые 200 символов для превью
+					    excerptText = markdownText.substring(0, 200) + '...';
+					    fullText = markdownText;
+					}
+					// Создаем превью (без Markdown-разметки)
+					const excerpt = excerptText
+					    .replace(/[#*`\[\]]/g, '')
+					    .replace(/\n/g, ' ')
+					    .substring(0, 200);
+					
+					// Преобразуем полный текст в HTML
+					const contentHTML = marked.parse(fullText);
+					
+					
+                    // Создаем HTML для поста с раскрывающейся структурой
+                    postsHTML += `
+                        <article class="blog-post" data-post-id="${post.file}">
+                            <div class="post-preview" onclick="togglePost(this)">
+                                <h3 class="post-title">${post.title}</h3>
+                                <div class="post-meta">
+                                    <span>${post.date}</span>
+                                    
+                                </div>
+                                <div class="post-excerpt">${excerpt}</div>
+                                <div class="expand-icon">▼</div>
+                            </div>
+                            <div class="post-full">
+                                <div class="post-content">
+                                    ${contentHTML}
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                    
+                } catch (error) {
+                    console.error('Ошибка загрузки:', error);
+                    // Показываем пост даже если файл не найден
+                    postsHTML += `
+                        <article class="blog-post" data-post-id="${post.file}">
+                            <div class="post-preview" onclick="togglePost(this)">
+                                <h3 class="post-title">${post.title}</h3>
+                                <div class="post-meta">
+                                    <span>${post.date}</span>
+                                    
+                                </div>
+                                <div class="post-excerpt">Заметка скоро появится. Кликните, чтобы увидеть больше.</div>
+                                <div class="expand-icon">▼</div>
+                            </div>
+                            <div class="post-full">
+                                <div class="post-content">
+                                    <p>Эта заметка готовится к публикации. Загляните сюда позже!</p>
+                                    <p>Чтобы создать эту заметку, добавьте файл <code>${post.file}</code> в папку <code>${POSTS_FOLDER}</code>.</p>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            
+            // Обновляем контейнер
+            blogContainer.innerHTML = postsHTML;
+            
+            // Показываем/скрываем кнопку "Показать больше"
+            if (visiblePosts < sortedPosts.length) {
+                showMoreBtn.style.display = 'inline-block';
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
+        
+        // Функция раскрытия/сворачивания поста
+        function togglePost(previewElement) {
+            const post = previewElement.closest('.blog-post');
+            const isExpanded = post.classList.contains('expanded');
+            
+            // Закрываем все открытые посты (опционально - можно убрать, чтобы открывать несколько)
+            document.querySelectorAll('.blog-post.expanded').forEach(expandedPost => {
+                if (expandedPost !== post) {
+                    expandedPost.classList.remove('expanded');
+                }
+            });
+            
+            // Переключаем состояние текущего поста
+            post.classList.toggle('expanded');
+            
+            // Прокручиваем к посту, если он открывается (только на мобильных)
+            if (!isExpanded && window.innerWidth < 768) {
+                setTimeout(() => {
+                    post.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+        
+        // Кнопка "Показать больше"
+        document.getElementById('show-more-btn')?.addEventListener('click', function() {
+            visiblePosts += 5; // Показываем ещё 5 постов
+            loadBlogPosts();
+            
+            // Плавная прокрутка к новым постам
+            setTimeout(() => {
+                const blogSection = document.getElementById('blog-section');
+                blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        });
+        
+        // Загружаем посты при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadBlogPosts);
+        
+        // Инструкция для пользователя в консоли
+        console.log(`
+            ===== ИНСТРУКЦИЯ ДЛЯ БЛОГА =====
+            
+            КАК ДОБАВИТЬ ЗАМЕТКУ:
+            1. Создайте папку "${POSTS_FOLDER}" в корне сайта
+            2. В папке создайте файл .md с именем в формате:
+               ГГГГ-ММ-ДД-название.md (например: 2025-03-25-moya-zametka.md)
+            3. Напишите заметку в формате Markdown
+            4. Добавьте информацию о файле в массив postsList выше:
+               {
+                 file: '2025-03-25-moya-zametka.md',
+                 title: 'Моя заметка',
+                 date: '25 марта 2025',
+                 readTime: '5 мин'
+               }
+            5. Загрузите на GitHub
+            
+            КАК РАБОТАЕТ ИНТЕРФЕЙС:
+            - Заметки показываются превью (первые 200 символов)
+            - Клик по заголовку или превью раскрывает полный текст
+            - Повторный клик сворачивает заметку
+            - Кнопка "Показать больше" загружает дополнительные заметки
+            
+            ПРИМЕР ЗАМЕТКИ (Markdown):
+            # Заголовок внутри заметки
+            
+            Введение и основные мысли.
+            
+            ## Подзаголовок
+            
+            * Пункт списка 1
+            * Пункт списка 2
+            
+            \`\`\`python
+            # Пример кода
+            print("Привет, мир!")
+            \`\`\`
+            
+            > Цитата или важная мысль.
+            
+            [Ссылка на ресурс](https://example.com)
+        `);
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

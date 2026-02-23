@@ -1,3 +1,5 @@
 title: По буковке роман
 description: Заметки о технологиях и их влиянии на жизнь людей, в частности мою.
 markdown: kramdown
+include:
+  - _posts

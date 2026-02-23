@@ -522,17 +522,32 @@
             </div>
             
             <div id="blog-posts">
-                <!-- Здесь появятся посты -->
-                <div class="blog-loading">
-                    <p>Загружаю заметки...</p>
-                </div>
-            </div>
-            
-            <div class="blog-controls">
-                <button id="show-more-btn" class="show-more-btn" style="display: none;">
-                    Показать больше заметок
-                </button>
-            </div>
+			  {% for post in site.posts limit:5 %}
+			    <article class="blog-post">
+			      <div class="post-preview" onclick="togglePost(this)">
+			        <h3 class="post-title">{{ post.title }}</h3>
+			        <div class="post-meta">
+			          <span>{{ post.date | date: "%d %B %Y" }}</span>
+			        </div>
+			        <div class="post-excerpt">
+			          {{ post.content | strip_html | truncatewords: 30 }}
+			        </div>
+			        <div class="expand-icon">▼</div>
+			      </div>
+			      <div class="post-full">
+			        <div class="post-content">
+			          {{ post.content }}
+			        </div>
+			      </div>
+			    </article>
+			  {% endfor %}
+			</div>
+
+			<div class="blog-controls">
+			  {% if site.posts.size > 5 %}
+			    <a href="/blog/" class="show-more-btn">Все заметки →</a>
+			  {% endif %}
+			</div>
         </section>
         
         <div class="navigation-arrows">
@@ -560,198 +575,9 @@
     </div>
     
     <script>
-        // КОНФИГУРАЦИЯ
-        const POSTS_PER_PAGE = 5; // Сколько постов показывать сначала
-        const POSTS_FOLDER = '_posts/'; // Папка с заметками
-        
-        // 10 ДЕМО-ЗАМЕТОК (замените своими)
-        const postsList = [
-			{ 
-                file: '2026-02-21-local_NN_qwen.md', 
-                title: 'Сижу без интернета, и за окном буран',
-                date: '21 февраля 2026',  
-            },
-			{ 
-                file: '2026-02-20-Ubuntu_and_VB.md', 
-                title: 'На УБУНТенах и в восхитительной «машине»!',
-                date: '20 февраля 2026',  
-            },
-			{ 
-                file: '2026-02-15-Improved_my_site.md', 
-                title: 'Улучшила страницу с текстовым контентом',
-                date: '15 февраля 2026',  
-            }, 
-			{ 
-                file: '2026-02-12-AI_makes_stupid.md', 
-                title: 'ИИ отупляет: правда или миф?',
-                date: '12 февраля 2026',  
-            }, 
-            { 
-                file: '2026-02-07-test_AI_detector.md', 
-                title: 'Что внутри ИИ-детектора?',
-                date: '07 февраля 2026',  
-            }, 
-			{ 
-                file: '2026-01-30-adaptive_design_mobile.md', 
-                title: 'Адаптивный дизайн на мобильных',
-                date: '30 января 2026',  
-            }, 
-			{ 
-                file: '2026-01-29-sozdanie_bloga_na_saytye.md', 
-                title: 'Создание блога на сайте',
-                date: '29 января 2026',  
-            },
-            { 
-                file: '2026-01-27-pervaya_statya.md', 
-                title: 'Сегодня вышла первая моя статья',
-                date: '27 января 2026',   
-            },
-			{ 
-                file: '2026-01-25-podarok_ot_pitera.md', 
-                title: 'У меня маленький праздник:',
-                date: '25 января 2026',
-                
-            }          
-        ];
-        
-        let visiblePosts = POSTS_PER_PAGE;
-        
-        // Функция для создания превью текста (первые 200 символов)
-        function createExcerpt(text, maxLength = 200) {
-            // Удаляем HTML-теги и Markdown-разметку
-            let plainText = text.replace(/[#*`\[\]]/g, '').replace(/\n/g, ' ');
-            
-            if (plainText.length <= maxLength) return plainText;
-            
-            // Обрезаем до последнего полного слова
-            let trimmed = plainText.substr(0, maxLength);
-            trimmed = trimmed.substr(0, Math.min(trimmed.length, trimmed.lastIndexOf(' ')));
-            
-            return trimmed + '...';
-        }
-        
-        // Загрузка и отображение постов
-        async function loadBlogPosts() {
-            const blogContainer = document.getElementById('blog-posts');
-            const showMoreBtn = document.getElementById('show-more-btn');
-            
-            // Сначала показываем сообщение о загрузке
-            blogContainer.innerHTML = '<div class="blog-loading"><p>Загружаю заметки...</p></div>';
-            
-            // Сортируем посты по дате (новые сверху)
-            const sortedPosts = [...postsList].sort((a, b) => {
-                return new Date(b.date.split(' ').reverse().join('-')) - new Date(a.date.split(' ').reverse().join('-'));
-            });
-            
-            // Показываем только часть постов
-            const postsToShow = sortedPosts.slice(0, visiblePosts);
-            
-            let postsHTML = '';
-            
-            // Если постов нет
-            if (postsToShow.length === 0) {
-                blogContainer.innerHTML = `
-                    <div class="blog-empty">
-                        <p>Пока нет заметок. Первая появится здесь скоро!</p>
-                        <p style="margin-top: 15px; font-size: 14px;">
-                            Чтобы добавить заметку, создайте файл .md в папке "${POSTS_FOLDER}"
-                        </p>
-                    </div>
-                `;
-                showMoreBtn.style.display = 'none';
-                return;
-            }
-            
-            // Загружаем каждый пост
-            for (const post of postsToShow) {
-                try {
-                    // Загружаем MD-файл
-                    const response = await fetch(POSTS_FOLDER + post.file);
-                    
-                    if (!response.ok) {
-                        throw new Error(`Файл ${post.file} не найден`);
-                    }
-                    
-                    const markdownText = await response.text();
+              
 
-					// Разделяем текст по <!--more-->
-					const parts = markdownText.split('<!--more-->');
-					let excerptText, fullText;
-					
-					if (parts.length > 1) {
-					    // Если есть разделитель
-					    excerptText = parts[0];
-					    fullText = parts[1];
-					} else {
-					    // Если нет разделителя - берем первые 200 символов для превью
-					    excerptText = markdownText.substring(0, 200) + '...';
-					    fullText = markdownText;
-					}
-					// Создаем превью (без Markdown-разметки)
-					const excerpt = excerptText
-					    .replace(/[#*`\[\]]/g, '')
-					    .replace(/\n/g, ' ')
-					    .substring(0, 200);
-					
-					// Преобразуем полный текст в HTML
-					const contentHTML = marked.parse(fullText);
-					
-					
-                    // Создаем HTML для поста с раскрывающейся структурой
-                    postsHTML += `
-                        <article class="blog-post" data-post-id="${post.file}">
-                            <div class="post-preview" onclick="togglePost(this)">
-                                <h3 class="post-title">${post.title}</h3>
-                                <div class="post-meta">
-                                    <span>${post.date}</span>
-                                    
-                                </div>
-                                <div class="post-excerpt">${excerpt}</div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="post-full">
-                                <div class="post-content">
-                                    ${contentHTML}
-                                </div>
-                            </div>
-                        </article>
-                    `;
-                    
-                } catch (error) {
-                    console.error('Ошибка загрузки:', error);
-                    // Показываем пост даже если файл не найден
-                    postsHTML += `
-                        <article class="blog-post" data-post-id="${post.file}">
-                            <div class="post-preview" onclick="togglePost(this)">
-                                <h3 class="post-title">${post.title}</h3>
-                                <div class="post-meta">
-                                    <span>${post.date}</span>
-                                    
-                                </div>
-                                <div class="post-excerpt">Заметка скоро появится. Кликните, чтобы увидеть больше.</div>
-                                <div class="expand-icon">▼</div>
-                            </div>
-                            <div class="post-full">
-                                <div class="post-content">
-                                    <p>Эта заметка готовится к публикации. Загляните сюда позже!</p>
-                                    <p>Чтобы создать эту заметку, добавьте файл <code>${post.file}</code> в папку <code>${POSTS_FOLDER}</code>.</p>
-                                </div>
-                            </div>
-                        </article>
-                    `;
-                }
-            }
-            
-            // Обновляем контейнер
-            blogContainer.innerHTML = postsHTML;
-            
-            // Показываем/скрываем кнопку "Показать больше"
-            if (visiblePosts < sortedPosts.length) {
-                showMoreBtn.style.display = 'inline-block';
-            } else {
-                showMoreBtn.style.display = 'none';
-            }
-        }
+        
         
         // Функция раскрытия/сворачивания поста
         function togglePost(previewElement) {
@@ -776,20 +602,7 @@
             }
         }
         
-        // Кнопка "Показать больше"
-        document.getElementById('show-more-btn')?.addEventListener('click', function() {
-            visiblePosts += 5; // Показываем ещё 5 постов
-            loadBlogPosts();
-            
-            // Плавная прокрутка к новым постам
-            setTimeout(() => {
-                const blogSection = document.getElementById('blog-section');
-                blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 300);
-        });
         
-        // Загружаем посты при загрузке страницы
-        document.addEventListener('DOMContentLoaded', loadBlogPosts);
         
         // Инструкция для пользователя в консоли
         console.log(`
@@ -838,6 +651,7 @@
 </body>
 
 </html>
+
 
 
 

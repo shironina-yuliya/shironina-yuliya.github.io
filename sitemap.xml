@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shironina-yuliya.github.io</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-03-20</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://shironina-yuliya.github.io/my_education.html</loc>
+    <lastmod>2026-03-20</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://shironina-yuliya.github.io/redaktirovaniye_i_perevod.html</loc>

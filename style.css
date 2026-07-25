@@ -87,6 +87,21 @@ body {
     font-style: italic;
     font-weight: 400;
 }
+.contact {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.social-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.social-link:hover {
+    color: #3498db;
+}
 
 /* ===== CONTACT INFO ===== */
 .contact-info {
@@ -779,4 +794,5 @@ body {
         box-shadow: none;
         padding: 20px;
     }
+    
 }

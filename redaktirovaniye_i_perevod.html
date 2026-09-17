@@ -118,14 +118,13 @@
         
         .projects-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 40px;
             margin-top: 30px;
         }
         
         .project {
-            flex: 1;
-            min-width: 300px;
+            width: 100%;
             background: #f8f9fa;
             padding: 30px;
             border-radius: 8px;
@@ -258,12 +257,19 @@
                 text-align: center;
             }
         }
+		
+		.social-link {
+			color: #2c3e50;
+			text-decoration: none;
+			transition: color 0.3s;
+		}
+
+		.social-link:hover {
+			color: #3498db;
+		}
         
         @media (max-width: 480px) {
-            .project {
-                min-width: 100%;
-            }
-            
+                        
             .book-image {
                 width: 100%;
                 max-width: 250px;
@@ -288,8 +294,8 @@
 				<a href="mailto:shironina-yuliya@mail.ru" class="email">shironina-yuliya@mail.ru</a>
         
 			<!-- НОВЫЕ ССЫЛКИ НА КАНАЛЫ -->
-				<a href="https://vk.com/slova_i_neyroseti" class="social-link" target="_blank">VK</a>
-				<a href="https://max.ru/channel_slova_i_neyroseti" class="social-link" target="_blank">MAX</a>
+				<a href="https://vk.ru/yulia_shironina" class="social-link" target="_blank">VK</a>
+
 			</div>
 		</header>
         
@@ -338,6 +344,48 @@
                     </ul>
                     <div class="feature-text">
                         <strong>Решение:</strong> повторить за автором действия в русской версии Excel и сделать (проверить) скриншоты, чтобы рисунки и объяснения в книге совпадали и соответствовали русскому интерфейсу.   
+                    </div>
+                </div>
+            </div>
+			
+			            <!-- Третий проект -->
+            <div class="project">
+                <div class="project-header">
+                    <img src="images/Blueprints.png" alt="Blueprints Visual Scripting for Unreal Engine 5" class="book-image">
+                    <div class="book-info">
+                        <h2 class="book-title">Blueprints Visual Scripting for Unreal Engine 5</h2>
+                        <p class="book-author">Marcos Romero, Brenden Sewell</p>
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <h3>Особенности проекта:</h3>
+                    <ul class="features-list">
+                        <li>Более 800 названий объектов и вкладок нерусифицированного интерфейса. Каждое название должно быть переведено один раз при первом упоминании в скобках, единообразно.</li>
+                    </ul>
+                    <div class="feature-text">
+                        <strong>Решение:</strong> Составить список всех названий (с помощью кода Python), подсчитать количество вхождений (с помощью кода, если название встречается лишь один раз — это повод проверить его на опечатки) и вручную проверить на наличие перевода при первом упоминании (поиском по тексту в Word).   
+                    </div>
+                </div>
+            </div>
+			
+			            <!-- Четвертый проект -->
+            <div class="project">
+                <div class="project-header">
+                    <img src="images/Braganza.png" alt="Looks Good to Me!" class="book-image">
+                    <div class="book-info">
+                        <h2 class="book-title">Looks Good to Me!</h2>
+                        <p class="book-author">Adrienne Braganza</p>
+                    </div>
+                </div>
+                
+                <div class="project-details">
+                    <h3>Особенности проекта:</h3>
+                    <ul class="features-list">
+                        <li>Необходимо проверить, что все 774 ссылки на источники в интернете рабочие и не содержат опечаток.</li>
+                    </ul>
+                    <div class="feature-text">
+                        <strong>Решение:</strong> Написать код на Python. Извлечь URL с помощью регулярных выражений, найти уникальные и проверить их с помощью библиотеки requests. Ссылки, при обращении по которым не был получен ответ 200, загружаются в файл CSV и проверяются в дальнейшем вручную на наличие опечаток (например, пробелов). Было найдено 87 уникальных ссылок, из которых 3 содержали ошибки.  
                     </div>
                 </div>
             </div>
